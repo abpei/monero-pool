@@ -42,6 +42,7 @@ typedef struct pool_stats_t
     uint64_t round_hashes;
     uint32_t pool_blocks_found;
     time_t last_block_found;
+    uint64_t last_block_found_height;
     time_t last_template_fetched;
 } pool_stats_t;
 
