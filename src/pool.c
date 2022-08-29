@@ -1924,7 +1924,7 @@ startup_payout(uint64_t height)
         pool_stats.pool_blocks_found++;
         block_t *block = (block_t*)val.mv_data;
 
-        if (!upstream_event){
+        if (!upstream_event) {
             pool_stats.last_block_found = block->timestamp;
             pool_stats.last_block_found_height = block->height;
         }
@@ -2643,6 +2643,7 @@ trusted_on_client_block(client_t *client)
     evbuffer_remove(input, (void*)&b, sizeof(block_t));
     pool_stats.pool_blocks_found++;
     pool_stats.last_block_found = b.timestamp;
+    pool_stats.last_block_found_height = b.height;
     pool_stats.round_hashes = 0;
     log_info("Block submitted by downstream: %.8s, %"PRIu64, b.hash, b.height);
     rc = store_block(b.height, &b);
@@ -2659,12 +2660,13 @@ upstream_on_stats(struct bufferevent *bev)
     struct evbuffer *input = bufferevent_get_input(bev);
     evbuffer_remove(input, &pool_stats, sizeof(pool_stats_t));
     log_trace("Stats from upstream: "
-            "%d, %"PRIu64", %"PRIu64", %d, %"PRIu64,
+            "%d, %"PRIu64", %"PRIu64", %d, %"PRIu64", %"PRIu64,
             pool_stats.connected_accounts,
             pool_stats.pool_hashrate,
             pool_stats.round_hashes,
             pool_stats.pool_blocks_found,
-            pool_stats.last_block_found);
+            pool_stats.last_block_found,
+            pool_stats.last_block_found_height);
 }
 
 static int
