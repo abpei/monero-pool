@@ -1926,6 +1926,7 @@ startup_payout(uint64_t height)
 
         if (!upstream_event)
             pool_stats.last_block_found = block->timestamp;
+            pool_stats.last_block_found_height = block->height;
 
         if (block->height + 60 > height)
             continue;
@@ -2077,6 +2078,7 @@ rpc_on_block_submitted(const char* data, rpc_callback_t *callback)
     if (!upstream_event)
     {
         pool_stats.last_block_found = b->timestamp;
+        pool_stats.last_block_found_height = b->height;
         pool_stats.round_hashes = 0;
     }
     log_info("Block submitted at height: %"PRIu64, b->height);
