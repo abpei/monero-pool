@@ -107,6 +107,7 @@ send_json_stats(struct evhttp_request *req, void *arg)
     uint64_t height = context->pool_stats->network_height;
     uint64_t ltf = context->pool_stats->last_template_fetched;
     uint64_t lbf = context->pool_stats->last_block_found;
+    uint64_t lbfh = context->pool_stats->last_block_found_height;
     uint32_t pbf = context->pool_stats->pool_blocks_found;
     uint64_t rh = context->pool_stats->round_hashes;
     unsigned ss = context->allow_self_select;
@@ -131,6 +132,7 @@ send_json_stats(struct evhttp_request *req, void *arg)
             "\"network_height\":%"PRIu64","
             "\"last_template_fetched\":%"PRIu64","
             "\"last_block_found\":%"PRIu64","
+            "\"last_block_found_height\":%"PRIu64","
             "\"pool_blocks_found\":%d,"
             "\"payment_threshold\":%g,"
             "\"pool_fee\":%g,"
