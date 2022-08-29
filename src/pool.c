@@ -1924,9 +1924,10 @@ startup_payout(uint64_t height)
         pool_stats.pool_blocks_found++;
         block_t *block = (block_t*)val.mv_data;
 
-        if (!upstream_event)
+        if (!upstream_event){
             pool_stats.last_block_found = block->timestamp;
             pool_stats.last_block_found_height = block->height;
+        }
 
         if (block->height + 60 > height)
             continue;
