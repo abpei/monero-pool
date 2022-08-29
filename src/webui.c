@@ -146,7 +146,7 @@ send_json_stats(struct evhttp_request *req, void *arg)
                     "%"PRIu64",%"PRIu64",%"PRIu64"],"
             "\"miner_balance\":%.8f,"
             "\"worker_count\": %"PRIu64
-            "}", ph, rh, nh, nd, height, ltf, lbf, pbf,
+            "}", ph, rh, nh, nd, height, ltf, lbf, lbfh, pbf,
             context->payment_threshold, context->pool_fee,
             context->pool_port, context->pool_ssl_port,
             ss, context->pool_stats->connected_accounts,
